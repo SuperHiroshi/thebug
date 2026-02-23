@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{fragments/layout :: head('Knowledge Base')}">
+</head>
+<body>
+    <aside th:replace="~{fragments/layout :: sidebar}"></aside>
+
+    <main>
+        <header>
+            <h1>Knowledge Base</h1>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <span style="color:#555">Search issues...</span>
+            </div>
+        </header>
+
+        <div th:each="cat : ${categories}" class="category-section">
+            <div class="category-header">
+                <span class="category-title" th:text="${cat}">Category Title</span>
+            </div>
+
+            <ul class="bug-list">
+                <li th:each="b : ${bugsByCategory[__${cat}__]}" class="bug-item">
+                    <div class="bug-info">
+                        <i class="fas fa-circle-dot bug-icon"></i>
+                        <a th:href="${b.path}" class="bug-title" th:text="${b.title}">Bug Title</a>
+                    </div>
+                    <span class="bug-code-badge" th:text="${b.bugCode}">CODE-2386</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hiroshiit.thebug.mapper.BugMapper">
+
+    <resultMap id="BugResultMap" type="com.hiroshiit.thebug.entity.Bug">
+        <id property="id" column="id"/>
+        <result property="category" column="category"/>
+        <result property="bugCode" column="bug_code"/>
+        <result property="title" column="title"/>
+        <result property="occurrenceCondition" column="occurrence_condition"/>
+        <result property="errorMessage" column="error_message"/>
+        <result property="wrongCode" column="wrong_code"/>
+        <result property="causeAnalysis" column="cause_analysis"/>
+        <result property="correctCode" column="correct_code"/>
+        <result property="correctComment" column="correct_comment"/>
+        <result property="prevention" column="prevention"/>
+        <result property="sortOrder" column="sort_order"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BugResultMap">
+        SELECT id, category, bug_code, title, occurrence_condition, error_message,
+               wrong_code, cause_analysis, correct_code, correct_comment, prevention, sort_order
+        FROM bug
+        ORDER BY category, sort_order, id
+    </select>
+
+    <select id="selectByCategory" resultMap="BugResultMap">
+        SELECT id, category, bug_code, title, occurrence_condition, error_message,
+               wrong_code, cause_analysis, correct_code, correct_comment, prevention, sort_order
+        FROM bug
+        WHERE category = #{category}
+        ORDER BY sort_order, id
+    </select>
+
+    <select id="selectById" resultMap="BugResultMap">
+        SELECT id, category, bug_code, title, occurrence_condition, error_message,
+               wrong_code, cause_analysis, correct_code, correct_comment, prevention, sort_order
+        FROM bug
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectCategories" resultType="string">
+        SELECT DISTINCT category FROM bug ORDER BY category
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bug (category, bug_code, title, occurrence_condition, error_message,
+                         wrong_code, cause_analysis, correct_code, correct_comment, prevention, sort_order)
+        VALUES (#{category}, #{bugCode}, #{title}, #{occurrenceCondition}, #{errorMessage},
+                #{wrongCode}, #{causeAnalysis}, #{correctCode}, #{correctComment}, #{prevention}, #{sortOrder})
+    </insert>
+</mapper>

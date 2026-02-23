@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<!-- バグ詳細ページ共通フラグメント -->
+<div th:fragment="bug-detail-content">
+    <div class="workspace">
+        <section class="docs-area">
+            <header style="margin-bottom: 2rem;">
+                <span style="color:var(--accent-purple); font-family:var(--terminal-font);"># ISSUE_LOG</span>
+                <h1 th:text="${title}" style="color:var(--text-bright);">Bug Title</h1>
+                <span class="category-badge" th:text="${category}">category</span>
+                <span class="category-badge" th:text="${bugCode}">code</span>
+            </header>
+
+            <h3 class="section-title">1. 概要</h3>
+            <div class="text-block" th:text="${title}">（タイトルを概要として表示）</div>
+
+            <h3 class="section-title">2. 発生条件</h3>
+            <div class="text-block" th:text="${occurrenceCondition}">発生条件</div>
+
+            <h3 class="section-title">3. エラーメッセージ</h3>
+            <div class="text-block"><pre th:text="${errorMessage}">エラーメッセージ</pre></div>
+
+            <h3 class="section-title">4. 誤ったコード</h3>
+            <div class="bug-container">
+                <div class="code-block" th:text="${wrongCode}">誤ったコード</div>
+            </div>
+
+            <h3 class="section-title">5. 原因分析</h3>
+            <div class="text-block" th:text="${causeAnalysis}">原因分析</div>
+
+            <h3 class="section-title">6. 修正後コード（参照用）</h3>
+            <div class="fix-container">
+                <p th:text="${correctComment}">補足</p>
+                <div class="code-block" th:text="${correctCode}">修正後コード</div>
+            </div>
+
+            <h3 class="section-title">7. 再発防止策</h3>
+            <div class="text-block" th:text="${prevention}">再発防止策</div>
+        </section>
+
+        <section class="lab-area">
+            <div class="playground-panel">
+                <h2 class="panel-title"><i class="fas fa-flask"></i> Execution Playground</h2>
+                <div style="background: #161b22; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+                    <p style="font-size: 0.8rem; margin-top: 0;">点击下方按钮模拟请求触发：</p>
+                    <div class="btn-group">
+                        <button class="btn btn-bug"><i class="fas fa-skull-crossbones"></i> Run Buggy</button>
+                        <button class="btn btn-fix"><i class="fas fa-shield-check"></i> Run Fixed</button>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <span style="font-size: 0.7rem; color:var(--text-main);">CONSOLE_OUTPUT:</span>
+                        <div id="console" style="background:#000; color:#0f0; padding:10px; height:100px; font-family:var(--terminal-font); font-size:0.75rem; border-radius:4px; margin-top:5px; overflow-y:auto;">
+                            > System ready. Awaiting instruction...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="db-panel">
+                <h2 class="panel-title"><i class="fas fa-database"></i> Live Database State</h2>
+                <table class="db-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Target_Field</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="db-rows">
+                    <tr>
+                        <td>101</td>
+                        <td style="color:var(--accent-blue)">Row_Data_01</td>
+                        <td>v1.0.2</td>
+                        <td><span class="status-badge status-active">NORMAL</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
