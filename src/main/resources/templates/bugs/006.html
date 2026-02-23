@@ -2,10 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head th:replace="~{fragments/layout :: head(${title})}">
 </head>
-<body>
+<body class="flex min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-200">
     <aside th:replace="~{fragments/layout :: sidebar}"></aside>
     <div th:replace="~{fragments/bug-detail :: bug-detail-content}"></div>
-    <link th:href="@{/css/detail.css}" rel="stylesheet">
     <script th:src="@{/js/common.js}"></script>
 </body>
 </html>

@@ -4,22 +4,34 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title th:text="${title != null ? title + ' - TheBug' : 'TheBug'}">TheBug</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link th:href="@{/css/common.css}" rel="stylesheet">
 </head>
 
 <body>
-    <!-- サイドバー -->
-    <aside th:fragment="sidebar">
-        <div class="logo">
-            <i class="fas fa-code-branch"></i> TheBug
-        </div>
-        <nav>
-            <a th:href="@{/}" class="menu-item"><i class="fas fa-home"></i> Dashboard</a>
-            <a href="#" class="menu-item"><i class="fas fa-bug"></i> All Bugs</a>
-            <a href="#" class="menu-item"><i class="fas fa-shield-halved"></i> Security</a>
-            <a href="#" class="menu-item"><i class="fas fa-database"></i> Database</a>
-        </nav>
-    </aside>
+<aside th:fragment="sidebar" class="w-64 shrink-0 border-r border-[#374151] bg-[#111827]/90 p-6 backdrop-blur">
+    <div class="mb-8 flex items-center gap-3 text-2xl font-bold text-emerald-400">
+        <i class="fas fa-code-branch"></i>
+        <span>TheBug</span>
+    </div>
+    <nav class="space-y-1.5 text-sm">
+        <a th:href="@{/}" class="flex items-center gap-3 rounded-md px-3 py-2 text-slate-300 transition hover:bg-slate-700/60 hover:text-white">
+            <i class="fas fa-home w-4 text-center"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 rounded-md px-3 py-2 text-slate-300 transition hover:bg-slate-700/60 hover:text-white">
+            <i class="fas fa-bug w-4 text-center"></i>
+            <span>All Bugs</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 rounded-md px-3 py-2 text-slate-300 transition hover:bg-slate-700/60 hover:text-white">
+            <i class="fas fa-shield-halved w-4 text-center"></i>
+            <span>Security</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 rounded-md px-3 py-2 text-slate-300 transition hover:bg-slate-700/60 hover:text-white">
+            <i class="fas fa-database w-4 text-center"></i>
+            <span>Database</span>
+        </a>
+    </nav>
+</aside>
 </body>
 </html>
