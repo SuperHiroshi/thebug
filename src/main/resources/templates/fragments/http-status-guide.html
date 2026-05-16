@@ -5,16 +5,17 @@
     <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
             <span class="font-mono text-xs uppercase tracking-[0.35em] text-cyan-300">HTTP Field Guide</span>
-            <h2 class="mt-2 text-2xl font-semibold text-white">常见 HTTP 错误码与直觉化理解</h2>
+            <h2 class="mt-2 text-2xl font-semibold text-white">网络错误与常见 HTTP 状态码</h2>
         </div>
         <p class="max-w-2xl text-sm leading-6 text-slate-400">
-            把协议层里的状态码翻译成更容易记住的语言。每张卡片都包含状态说明、开发场景，以及一个生活比喻。
+            把协议层里的状态码翻译成更容易记住的语言。现在每个状态码都可以进入单独页面，查看讲解、常见场景、前端处理方式和后端排查方向。
         </p>
     </div>
 
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <article th:each="status : ${statuses}"
-                 class="rounded-2xl border border-slate-700 bg-slate-800/80 p-5 transition hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-[0_16px_30px_rgba(8,145,178,0.18)]">
+        <a th:each="status : ${statuses}"
+           th:href="@{/http-status/{code}(code=${status.code})}"
+           class="block rounded-2xl border border-slate-700 bg-slate-800/80 p-5 transition hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-[0_16px_30px_rgba(8,145,178,0.18)]">
             <div class="mb-4 flex items-start justify-between gap-3">
                 <div>
                     <div class="font-mono text-2xl font-semibold text-cyan-300" th:text="${status.code}">404</div>
@@ -40,7 +41,11 @@
                     <p th:text="${status.analogy}">比喻</p>
                 </div>
             </div>
-        </article>
+            <div class="mt-4 flex items-center justify-between border-t border-slate-700/80 pt-4 text-sm text-cyan-300">
+                <span>进入单页讲解</span>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
     </div>
 </section>
 </html>
